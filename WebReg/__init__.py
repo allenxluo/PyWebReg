@@ -61,23 +61,23 @@ class WebReg(object):
         '''
         # Input Username
         self._wait_until_present(By.ID, username_textbox_id)
-        textbox = self.driver.find_element_by_id(username_textbox_id)
+        textbox = self.driver.find_element(By.ID, username_textbox_id)
         textbox.send_keys(username)
 
         # Input Password
         self._wait_until_present(By.ID, password_textbox_id)
-        textbox = self.driver.find_element_by_id(password_textbox_id)
+        textbox = self.driver.find_element(By.ID, password_textbox_id)
         textbox.send_keys(password)
 
         self._pause()
 
         # Click login button
         self._wait_until_present(By.NAME, login_button_name)
-        button = self.driver.find_element_by_name(login_button_name)
+        button = self.driver.find_element(By.NAME, login_button_name)
         button.click()
 
         # Check if the page redirects
-        button = self.driver.find_elements_by_name(login_button_name)
+        button = self.driver.find_elements(By.NAME, login_button_name)
         if len(button) > 0:
             logging.error("Loggin Page Failed to Redirect")
             raise LoginFailedException(
