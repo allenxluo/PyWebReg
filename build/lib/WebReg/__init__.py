@@ -102,7 +102,7 @@ class WebReg(object):
 
     def get_page_title(self, title_class_name='WebRegTitle') -> str:
         self._wait_until_present(By.CLASS_NAME, title_class_name)
-        title = self.driver.find_element_by_class_name(title_class_name)
+        title = self.driver.find_element(By.CLASS_NAME, title_class_name)
         return title.text
 
     def check_err_msg(self, default='', err_msg_class_name='WebRegErrorMsg') -> str:
@@ -114,7 +114,7 @@ class WebReg(object):
 
     def get_logout_status(self, logout_msg_class='DivLogoutMsg'):
         '''Return True if logged out'''
-        msg_divs = self.driver.find_elements_by_class_name(logout_msg_class)
+        msg_divs = self.driver.find_elements(By.CLASS_NAME, logout_msg_class)
         return len(msg_divs) > 0
 
     def add_course(self, course_code: str, letter_grade=True, variable_units=None, auth_code=None) -> int:

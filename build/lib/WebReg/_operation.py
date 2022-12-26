@@ -22,7 +22,7 @@ def _goto_waitlist(self, xpathes=("//input[@value='Wait list Menu']", "//input[@
     if self.get_page_title().find('Wait List Menu') != -1:
         return
     for xpath in xpathes:
-        button = self.driver.find_elements_by_xpath(xpath)
+        button = self.driver.find_elements(By.XPATH, xpath)
         if len(button):
             button[0].click()
             return
@@ -65,7 +65,7 @@ def _send_waitlist_request(self, operation: str, course_code: str, letter_grade=
     # Radio
     xpath = {'add': "//input[@id='add'][@type='radio']",
              'drop': "//input[@id='drop'][@type='radio']"}
-    self.driver.find_element_by_xpath(xpath[operation]).click()
+    self.driver.find_element(By.XPATH, xpath[operation]).click()
 
     # Course Code
     xpath = "//input[@name='courseCode'][@type='text']"
